@@ -1,4 +1,5 @@
-from modules.py import *
+from PIL import Image
+from modules import *
 
 
 """image object"""
