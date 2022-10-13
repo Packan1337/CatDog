@@ -28,12 +28,14 @@ def make_dogs(amount_of_images_to_scan: int):
         convert_and_store_image(img)
 
 
+# Create a select amount of cat images and add their k-value to dogs_numpydata list.
 def make_cats(amount_of_images_to_scan: int):
     for _ in range(amount_of_images_to_scan):
         img = Image.open("cats/" + random.choice(os.listdir("cats")))
         convert_and_store_image(img)
 
 
+# Create a select amount of both dog and cat images and add their k-value to dogs_numpydata list.
 def make_mix(amount_of_images_to_scan: int):
     for _ in range(amount_of_images_to_scan):
         img = Image.open("mix/" + random.choice(os.listdir("mix")))
