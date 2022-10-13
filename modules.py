@@ -28,7 +28,20 @@ def make_dogs(amount_of_images_to_scan: int):
         convert_and_store_image(img)
 
 
-# Function to print entire list of k-values.
+def make_cats(amount_of_images_to_scan: int):
+    for _ in range(amount_of_images_to_scan):
+        img = Image.open("cats/" + random.choice(os.listdir("cats")))
+        convert_and_store_image(img)
+
+
+def make_mix(amount_of_images_to_scan: int):
+    for _ in range(amount_of_images_to_scan):
+        img = Image.open("mix/" + random.choice(os.listdir("mix")))
+        convert_and_store_image(img)
+
+
+    # Function to print entire list of k-values.
 def print_numpydata(list_to_print):
     for k in list_to_print:
         print(k[0, 0])
+
