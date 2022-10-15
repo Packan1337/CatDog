@@ -1,7 +1,10 @@
 import os
 import random
+
+import numpy as np
 from PIL import Image
 from numpy import asarray
+from knn import KNN, euclidean_distance
 
 # Data containers.
 dogs_numpydata = []
@@ -50,4 +53,13 @@ def make_mix(amount_of_images_to_scan: int):
 # Function to print entire list of k-values.
 def print_numpydata(list_to_print):
     for k in list_to_print:
-        print(k[0, 0])
+        print(f"{k[0, 0]} ", end="")
+
+# TODO fix mix_numpydata value.
+def get_accuracy():
+    clf = KNN(k=3)
+    clf.fit(dogs_numpydata, cats_numpydata)
+    predictions = clf.predict(mix_numpydata)
+
+    acc = np.sum(predictions == mix_numpydata / len(mix_numpydata))
+    print(acc)
