@@ -89,7 +89,7 @@ class Animal:
 
 mix_animal = Animal.make_random_animal()
 print(mix_animal.animal_type)
-Animal.make_mix_animals(3)
+Animal.make_mix_animals(20)
 
 
 def check_animals(animals_to_check: list, test_animal):
