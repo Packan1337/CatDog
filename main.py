@@ -7,6 +7,7 @@ from numpy import asarray
 
 dogs = []
 cats = []
+mix = []
 
 
 class Animal:
@@ -29,11 +30,15 @@ class Animal:
 
         elif animal == "test_dog":
             sum_of_test_pixels = np.sum(asarray(image_to_convert))
-            return Animal("test_dog", sum_of_test_pixels)
+            return Animal("dog", sum_of_test_pixels)
 
         elif animal == "test_cat":
             sum_of_test_pixels = np.sum(asarray(image_to_convert))
-            return Animal("test_cat", sum_of_test_pixels)
+            return Animal("cat", sum_of_test_pixels)
+
+        elif animal == "mix":
+            sum_of_mix_pixels = np.sum(asarray(image_to_convert))
+            mix.append(Animal("The animal", sum_of_mix_pixels))
 
     @staticmethod
     def make_random_dog(amount_of_images_to_scan: int):
@@ -56,6 +61,12 @@ class Animal:
             return Animal.make_random_cat(1)
 
     @staticmethod
+    def make_mix_animals(amount_to_make: int):
+        for _ in range(amount_to_make):
+            mix_img = Image.open("mix/" + random.choice(os.listdir("mix")))
+            Animal.convert_and_store_image(mix_img, "mix")
+
+    @staticmethod
     def make_dog():
         d_space = 0
         while d_space <= 2:
@@ -76,16 +87,19 @@ class Animal:
         return math.sqrt((float(x) - float(y)) ** 2)
 
 
-test_animal = Animal.make_random_animal()
-print("TEST")
-print(test_animal.animal_type)
-print(test_animal.sum_of_pixels)
-print("")
-Animal.make_dog()
+mix_animal = Animal.make_random_animal()
+print(mix_animal.animal_type)
+Animal.make_mix_animals(3)
 
-for lol in dogs:
-    print(lol.sum_of_pixels)
-print("")
 
-for all_dogs in dogs:
-    print(Animal.euclidean_distance(test_animal.sum_of_pixels, all_dogs.sum_of_pixels))
+def check_animals(animals_to_check: list, test_animal):
+    for animals in animals_to_check:
+        if animals.sum_of_pixels > test_animal.sum_of_pixels:
+            print(f"{animals.animal_type} is probably a dog")
+        elif animals.sum_of_pixels < test_animal.sum_of_pixels:
+            print(f"{animals.animal_type} is probably a cat")
+        else:
+            print(f"{animals.animal_type} is 100% a {test_animal.animal_type}")
+
+
+check_animals(mix, mix_animal)
