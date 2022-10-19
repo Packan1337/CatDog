@@ -55,6 +55,7 @@ def print_numpydata(list_to_print):
     for k in list_to_print:
         print(f"{k[0, 0]} ", end="")
 
+
 # TODO fix mix_numpydata value.
 def get_accuracy():
     clf = KNN(k=3)
